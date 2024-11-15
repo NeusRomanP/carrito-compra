@@ -6,7 +6,7 @@ form {
 
 .form-items {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 16px;
   gap: 16px;
@@ -14,12 +14,14 @@ form {
 
 form .inputs {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 8px;
+  margin: auto;
 }
 
-form input{
+form input, form button{
   padding: 4px;
+  margin: auto;
 }
 
 form #amount {

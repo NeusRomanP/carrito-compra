@@ -3,7 +3,7 @@ import './ProductForm.css';
 import Product from './interfaces/Product';
 
 type Props = {
-  addProduct: (product: Product) => void,
+  addProduct: (product: Product, amount: number) => void;
 }
 
 export function ProductForm({ addProduct }: Props) {
@@ -25,7 +25,7 @@ export function ProductForm({ addProduct }: Props) {
     const res = await fetch(`https://fakestoreapi.com/products/${productId}`);
     const data = await res.json();
 
-    addProduct(data);
+    addProduct(data, Number(amount));
   };
   return (
     <form onSubmit={handleSubmit}>

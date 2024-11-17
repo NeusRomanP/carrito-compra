@@ -7,11 +7,15 @@ type Props = {
 }
 export function ProductsCart({products}: Props) {
   return (
-    <section className="">
-      {
+    <section className="cart">
+      <h2>Productos del carrito</h2>
+      { products.length ?
         products.map(product => (
           <CartItem product={product} key={product.id}/>
-        ))
+        )) :
+        (
+          <p>El carrito està vacío</p>
+        )
       }
     </section>
   )

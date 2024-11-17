@@ -32,8 +32,10 @@ function App() {
 
   return (
     <>
-      <ProductForm addProduct={addProduct}/>
-      <ProductsCart products={products} />
+      <main>
+        <ProductForm addProduct={addProduct}/>
+        <ProductsCart products={products} />
+      </main>
     </>
   )
 }

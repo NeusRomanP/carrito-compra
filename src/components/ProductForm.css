@@ -32,3 +32,9 @@ form #amount {
 form #productId {
   width: 8rem;
 }
+
+.error {
+  display: block;
+  color: red;
+  font-style: italic;
+}

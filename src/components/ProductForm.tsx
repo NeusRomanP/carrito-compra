@@ -9,6 +9,7 @@ type Props = {
 export function ProductForm({ addProduct }: Props) {
   const [amount, setAmount] = useState('');
   const [productId, setProductId] = useState('');
+  const [displayError, setDisplayError] = useState(false);
 
   const handleChangeAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -22,10 +23,15 @@ export function ProductForm({ addProduct }: Props) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await fetch(`https://fakestoreapi.com/products/${productId}`);
-    const data = await res.json();
-
-    addProduct(data, Number(amount));
+    try {
+      setDisplayError(false);
+      const res = await fetch(`https://fakestoreapi.com/products/${productId}`);
+      const data = await res.json();
+  
+      addProduct(data, Number(amount));
+    } catch (e) {
+      setDisplayError(true);
+    }
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -35,16 +41,27 @@ export function ProductForm({ addProduct }: Props) {
           <input type="number"
                  placeholder="Cantidad"
                  id='amount'
+                 min={0}
+                 max={99}
                  value={amount}
+                 required
                  onChange={handleChangeAmount} />
           <input type="text"
                  placeholder="ID del Producto"
                  id='productId'
                  value={productId}
+                 required
                  onChange={handleChangeProductId} />
         </div>
         <button type="submit">Agregar</button>
       </div>
+      {
+        displayError && (
+          <div>
+            <small className='error'>El producto no existe</small>
+          </div>
+        )
+      }
     </form>
   )
 }

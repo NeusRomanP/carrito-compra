@@ -51,8 +51,23 @@ function App() {
     )
   }
 
+  const addProductsFromStorage = () => {
+    const storedProducts = localStorage.getItem('products');
+    if (storedProducts) {
+      setProducts(JSON.parse(storedProducts));
+    }
+  }
+
+  const setProductsStorage = () => {
+    localStorage.setItem('products', JSON.stringify(products));
+  }
+
   useEffect(() => {
-    console.log(products);
+    if (!products.length) {
+      addProductsFromStorage();
+    } else {
+      setProductsStorage();
+    }
   }, [products]);
 
   return (

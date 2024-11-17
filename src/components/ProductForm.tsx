@@ -41,7 +41,7 @@ export function ProductForm({ addProduct }: Props) {
           <input type="number"
                  placeholder="Cantidad"
                  id='amount'
-                 min={0}
+                 min={1}
                  max={99}
                  value={amount}
                  required

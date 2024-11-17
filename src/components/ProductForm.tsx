@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './ProductForm.css';
-import Product from './interfaces/Product';
+import Product from '../interfaces/Product';
 
 type Props = {
   addProduct: (product: Product, amount: number) => void;

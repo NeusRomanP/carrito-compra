@@ -1,0 +1,22 @@
+.product {
+  width: 90%;
+  max-width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.product span {
+  padding: 1rem;
+}
+
+.product .amount, .product .unit-price, .product .total-price {
+  width: fit-content;
+}
+
+.product .title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

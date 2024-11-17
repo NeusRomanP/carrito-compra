@@ -1,8 +1,9 @@
-import { ProductForm } from './ProductForm'
+import { ProductForm } from './components/ProductForm'
 import { useState, useEffect } from 'react'
 import './App.css'
 import Product from './interfaces/Product';
 import CartProduct from './interfaces/CartProduct';
+import { ProductCart } from './components/ProductsCart';
 
 function App() {
   const [products, setProducts] = useState<CartProduct[]>([]);
@@ -32,6 +33,7 @@ function App() {
   return (
     <>
       <ProductForm addProduct={addProduct}/>
+      <ProductCart products={products} />
     </>
   )
 }

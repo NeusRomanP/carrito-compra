@@ -22,6 +22,22 @@ export function ProductsCart({products, decreaseAmount, increaseAmount}: Props) 
           <p>El carrito està vacío</p>
         )
       }
+      <article className="totals">
+        <strong>
+          Total productos:
+          <span>
+            {products.reduce((acc, item) => acc + item.amount, 0)}
+          </span>
+        </strong>
+        <strong>
+          Total precio:
+          <span>$
+            {
+              products.reduce((acc, item) => acc + (item.amount * item.price), 0).toFixed(2)
+            }
+          </span>
+        </strong>
+      </article>
     </section>
   )
 }

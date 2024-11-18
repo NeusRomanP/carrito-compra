@@ -12,3 +12,26 @@
 h2 {
   text-align: center;
 }
+
+.totals {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  align-self: flex-end;
+  gap: 8px;
+  border: 2px solid rebeccapurple;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.totals > strong {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.totals > strong > span {
+  color: rebeccapurple;
+}

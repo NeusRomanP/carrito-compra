@@ -96,7 +96,7 @@ function App() {
       <header>
         <h1>NeRoPi</h1>
         <h2>Carrito de compra</h2>
-        <img src="src/assets/logo.png" alt="Logo carrito" />
+        <img src="/src/assets/logo.png" alt="Logo carrito" />
       </header>
       <main>
         <ProductForm addProduct={addProduct}/>

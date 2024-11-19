@@ -7,6 +7,7 @@ import { ProductsCart } from './components/ProductsCart';
 
 function App() {
   const [products, setProducts] = useState<CartProduct[]>([]);
+  const [date, setDate] = useState<undefined|Date>(undefined);
 
   const addProduct = (product: Product, amount: number) => {
     const cartProduct = products.find(p => p.id === product.id);
@@ -30,36 +31,57 @@ function App() {
   }
 
   const decreaseAmount = (id: number) => {
-    setProducts(
-      products.map(p => {
-        if (id === p.id) {
-          p.amount--;
-        }
-        return p;
-      }).filter(p => p.amount > 0)
-    )
+    setProducts((prevProducts) =>
+      prevProducts
+        .map(p => 
+          p.id === id 
+            ? { ...p, amount: p.amount - 1 }
+            : p
+        )
+        .filter(p => p.amount > 0)
+    );
+
+    if (products.length === 1 && products[0].amount === 1) {
+      localStorage.removeItem('cart');
+      setDate(undefined);
+    }
   }
 
   const increaseAmount = (id: number) => {
-    setProducts(
-      products.map(p => {
-        if (id === p.id && p.amount < 99) {
-          p.amount++;
-        }
-        return p;
-      })
-    )
+    setProducts((prevProducts) =>
+      prevProducts.map(p =>
+        p.id === id && p.amount < 99
+          ? { ...p, amount: p.amount + 1 }
+          : p
+      )
+    );
   }
 
   const addProductsFromStorage = () => {
-    const storedProducts = localStorage.getItem('products');
+    const storedProducts = localStorage.getItem('cart');
     if (storedProducts) {
-      setProducts(JSON.parse(storedProducts));
+      setProducts(JSON.parse(storedProducts).products);
     }
   }
 
   const setProductsStorage = () => {
-    localStorage.setItem('products', JSON.stringify(products));
+    console.log('setproductstorage', products)
+    if (localStorage.getItem('cart')) {
+      const cart = {
+        date: JSON.parse(localStorage.getItem('cart') ?? 'null')?.date ?? undefined,
+        products: products
+      }
+      setDate(cart.date)
+      localStorage.setItem('cart', JSON.stringify(cart));
+    } else {
+      const date = new Date();
+      setDate(date);
+      const cart = {
+        date: date,
+        products: products
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
   }
 
   useEffect(() => {
@@ -76,7 +98,8 @@ function App() {
         <ProductForm addProduct={addProduct}/>
         <ProductsCart products={products}
                       decreaseAmount={decreaseAmount}
-                      increaseAmount={increaseAmount}/>
+                      increaseAmount={increaseAmount}
+                      date={date}/>
       </main>
     </>
   )

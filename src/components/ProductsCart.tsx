@@ -6,11 +6,21 @@ type Props = {
   products: CartProduct[];
   decreaseAmount: (id: number) => void;
   increaseAmount: (id: number) => void;
+  date: Date | undefined
 }
-export function ProductsCart({products, decreaseAmount, increaseAmount}: Props) {
+export function ProductsCart({products, decreaseAmount, increaseAmount, date}: Props) {
+  const newDate = new Date(date ?? new Date());
   return (
     <section className="cart">
       <h2>Productos del carrito</h2>
+      {
+        date ? (
+          <p>
+            Creado en {`${newDate?.getDate()}-${newDate?.getMonth()}-${newDate?.getFullYear()} `}
+            a las {`${newDate?.getHours()}:${newDate?.getMinutes()}:${newDate?.getSeconds()}`}
+          </p>
+        ) : ''
+      }
       { products.length ?
         products.map(product => (
           <CartItem product={product}

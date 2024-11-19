@@ -65,7 +65,6 @@ function App() {
   }
 
   const setProductsStorage = () => {
-    console.log('setproductstorage', products)
     if (localStorage.getItem('cart')) {
       const cart = {
         date: JSON.parse(localStorage.getItem('cart') ?? 'null')?.date ?? undefined,

@@ -4,6 +4,7 @@ import './App.css'
 import Product from './interfaces/Product';
 import CartProduct from './interfaces/CartProduct';
 import { ProductsCart } from './components/ProductsCart';
+import logo from './assets/logo.png';
 
 function App() {
   const [products, setProducts] = useState<CartProduct[]>([]);
@@ -96,7 +97,7 @@ function App() {
       <header>
         <h1>NeRoPi</h1>
         <h2>Carrito de compra</h2>
-        <img src="/src/assets/logo.png" alt="Logo carrito" />
+        <img src={logo} alt="Logo carrito" />
       </header>
       <main>
         <ProductForm addProduct={addProduct}/>

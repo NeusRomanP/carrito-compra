@@ -12,3 +12,14 @@ main {
   align-items: center;
   gap: 32px;
 }
+
+header {
+  color: rebeccapurple;
+}
+
+header img {
+  width: 80%;
+  max-width: 150px;
+  aspect-ratio: 1;
+  margin-bottom: 20px;
+}

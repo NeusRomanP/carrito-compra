@@ -12,12 +12,14 @@ export function ProductsCart({products, decreaseAmount, increaseAmount, date}: P
   const newDate = new Date(date ?? new Date());
   return (
     <section className="cart">
-      <h2>Productos del carrito</h2>
+      <h3>Productos del carrito</h3>
       {
         date ? (
           <p>
-            Creado en {`${newDate?.getDate()}-${newDate?.getMonth()}-${newDate?.getFullYear()} `}
-            a las {`${newDate?.getHours()}:${newDate?.getMinutes()}:${newDate?.getSeconds()}`}
+            Creado en {`${newDate?.getDate()}`.padStart(2, '0') + '-' + `${newDate?.getMonth() + 1}`.padStart(2, '0') + '-'
+              + `${newDate?.getFullYear()} `}
+            a las {`${newDate?.getHours()}`.padStart(2, '0') + ':' + `${newDate?.getMinutes()}`.padStart(2, '0')
+              + ':' + `${newDate?.getSeconds()}`.padStart(2, '0')}
           </p>
         ) : ''
       }
